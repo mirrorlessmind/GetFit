@@ -89,8 +89,17 @@ function populateChart(data) {
 
   let barChart = new Chart(bar, {
     type: 'bar',
+type: 'bar',
     data: {
-      labels,
+      labels: [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ],
       datasets: [
         {
           label: 'Pounds',
@@ -171,6 +180,18 @@ function populateChart(data) {
       },
     },
   });
+}
+
+function duration(data) {
+  const durations = [];
+
+  data.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      durations.push(exercise.duration);
+    });
+  });
+
+  return durations;
 }
 
 function calculateTotalWeight(data) {
