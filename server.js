@@ -15,9 +15,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-const uri = "mongodb+srv://m001-student:m001-student@sandbox.gjic9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://root:root@sandbox.gjic9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
-  // perform actions on the collection object
+// perform actions on the collection object
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 	useNewUrlParser: true,
@@ -46,14 +46,11 @@ app.get("/api/workouts", (req, res) => {
 // Route (PUT) to update workout data
 app.put("/api/workouts/:id", (req, res) => {
 	var workoutID = req.params.id;
-	db.Exercise.create(req.body)
-		.then(({ _id }) =>
-			db.Workout.findOneAndUpdate(
-				{ _id: workoutID },
-				{ $push: { exercises: _id } },
-				{ new: true }
-			)
-		)
+	db.Workout.findOneAndUpdate(
+		{ _id: workoutID },
+		{ $push: { exercises: req.body } },
+		{ new: true }
+	)
 		.then((dbWorkout) => {
 			res.json(dbWorkout);
 		})
@@ -75,8 +72,9 @@ app.post("/api/workouts", (req, res) => {
 
 // Route populates dashboard
 app.get("/api/workouts/range", (req, res) => {
-	db.Workout.find({}, null, { sort: { day: 1 } })
-		.populate("exercises")
+	db.Workout.find({})
+		.sort({ _id: -1 })
+		.limit(7)
 		.then((dbWorkout) => {
 			res.json(dbWorkout);
 		})
