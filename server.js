@@ -15,7 +15,16 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-// Using Mogoose to connect to database
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://m001-student:m001-student@sandbox.gjic9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 	useNewUrlParser: true,
 });

@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ExerciseSchema = new Schema({
-	//create this name, duration, distanc, weight, reps, sets
 	type: String,
 	name: String,
 	duration: Number,
