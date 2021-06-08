@@ -18,8 +18,6 @@ app.use(express.static("public"));
 const uri = "mongodb+srv://m001-student:m001-student@sandbox.gjic9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
   // perform actions on the collection object
-  client.close();
-});
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
 	useNewUrlParser: true,
