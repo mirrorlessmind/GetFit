@@ -5,7 +5,7 @@
 ![npm](https://img.shields.io/npm/v/morgan?color=pink&label=morgan&logo=NPM&style=plastic)
 Let's Get Fit Together!
 
-![Demo Image](assets/images/workoutdemo.png?raw=true "Demo Image")
+![Demo Image](assets/workoutdemo.png?raw=true "Demo Image")
 
 ## Languages & Technology Involved
 Featuring: Javascript, MongoDb,Mongoose, Heroku, Node.js,JSON, ES6+,CSS, npm modules.
